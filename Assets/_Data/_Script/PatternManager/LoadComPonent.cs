@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadComPonent : MonoBehaviour
+public abstract class LoadComPonent : MonoBehaviour
 {
     protected virtual void LoadComponents()
+    {
+        // For Override 
+    }    
+    protected virtual void ResetValue()
     {
         // For Override 
     }
@@ -13,10 +17,7 @@ public class LoadComPonent : MonoBehaviour
         this.LoadComponents();
     }
 
-    protected virtual void ResetValue()
-    {
-        // For Override 
-    }
+
     protected virtual void Reset()
     {
         this.ResetValue();
