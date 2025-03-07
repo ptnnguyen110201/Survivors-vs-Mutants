@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class ObjectModel<T> : LoadComPonent
 {
-    [SerializeField] protected T ObjParent;
+    [SerializeField] protected T objParent;
     [SerializeField] protected SpriteRenderer objectSpriteRenderer;
     [SerializeField] protected string effectName;
 
@@ -43,8 +43,8 @@ public abstract class ObjectModel<T> : LoadComPonent
     }
     protected virtual void LoadObjParent()
     {
-        if (this.ObjParent != null) return;
-        this.ObjParent = transform.GetComponentInParent<T>();
+        if (this.objParent != null) return;
+        this.objParent = transform.GetComponentInParent<T>(true);
         Debug.Log(transform.name + ": Load ObjParent", gameObject);
     }
 

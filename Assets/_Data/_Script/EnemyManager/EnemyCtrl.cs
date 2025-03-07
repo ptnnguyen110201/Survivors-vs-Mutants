@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
 {
-    
-    protected virtual void OnEnable() 
+
+    protected virtual void OnEnable()
     {
-        EnemyStateManager enemyStateManager = FindAnyObjectByType<EnemyStateManager>();
+        EnemyManager enemyStateManager = FindAnyObjectByType<EnemyManager>();
         if (enemyStateManager == null) return;
         enemyStateManager.RegisterObject(this);
     }

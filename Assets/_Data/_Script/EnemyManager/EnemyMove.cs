@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class EnemyMove : ObjectMove<EnemyCtrl>
 {
-  
+    [SerializeField] protected string IsMoving = "IsMoving";
     public override void Moving()
     {
-        transform.parent.Translate(this.moveSpeed * this.moveDirection * Time.fixedDeltaTime);
-
+        if (!this.canMove)
+        {
+            this.ObjParent.ObjectAnimator.SetBoolAnimation(IsMoving, this.canMove);
+            return;
+        }
+        transform.parent.Translate(this.moveSpeed * this.moveDirection * Time.deltaTime);
+        this.ObjParent.ObjectAnimator.SetBoolAnimation(IsMoving, this.canMove);
     }
 
 

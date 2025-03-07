@@ -12,13 +12,14 @@ public abstract class ObjectAttack<T> : LoadComPonent
 
     protected virtual bool IsCanAttack() 
     {
-        this.coolDownTimer += Time.fixedDeltaTime;
-        if(this.coolDownTime > this.coolDownTimer) return this.canAttack = false;
+        this.coolDownTimer += Time.deltaTime;
+        if (this.coolDownTime > this.coolDownTimer) return true;
         this.coolDownTimer = 0;
-        return this.canAttack = true;
+        return false;
     }
     public virtual void SetCoolDownTime(float coolDownTime) => this.coolDownTime = coolDownTime;
     public virtual void SetCoolDownTimer(float coolDownTimer) => this.coolDownTimer = coolDownTimer;
+    public virtual void SetCanAttack(bool canAttack) => this.canAttack = canAttack;
     protected override void LoadComponents()
     {
         base.LoadComponents();
