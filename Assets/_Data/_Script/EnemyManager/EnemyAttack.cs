@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAttack : ObjectAttack<EnemyCtrl>
 {
+    [SerializeField] protected string isAttacking = "isAttacking";
     protected override void ResetValue()
     {
         base.ResetValue();
@@ -12,11 +13,14 @@ public class EnemyAttack : ObjectAttack<EnemyCtrl>
     }
     public override void Attacking()
     {
+        if (!this.canAttack) return;
         if (!this.IsCanAttack()) 
         {
-            Debug.Log("Cant Attack");
+
             return;
         }
-        Debug.Log("Attacking");
+        this.ObjParent.ObjectAnimator.SetTriggerAnimation(this.isAttacking);
     }
+
+  
 }
