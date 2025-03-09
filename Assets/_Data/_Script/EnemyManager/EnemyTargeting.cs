@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class EnemyTargeting : ObjectTargeting<EnemyCtrl>
 {
-    [SerializeField] protected CharacterCtrl objTargeting;
-    public virtual void SetObjTargeting(CharacterCtrl objTargeting) => this.objTargeting = objTargeting;
-
-    public virtual bool isTargeting() 
+    public virtual bool isTargeting()
     {
-        if(this.objTargeting == null) return false;
+
+        if (this.objTargeting == null) return false;
         return true;
     }
     public override void CheckTargeting()
@@ -18,18 +16,18 @@ public class EnemyTargeting : ObjectTargeting<EnemyCtrl>
         this.objParent.ObjectAttack.SetCanAttack(this.isTargeting());
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collider2D) 
+    protected virtual void OnTriggerEnter2D(Collider2D collider2D)
     {
-        CharacterCtrl characterCtrl = collider2D.GetComponent<CharacterCtrl>();
+        CharacterCtrl characterCtrl = collider2D.transform.GetComponent<CharacterCtrl>();
         if (characterCtrl == null) return;
-        this.SetObjTargeting(characterCtrl);
+        this.SetObjTargeting(characterCtrl.transform);
     }
     protected virtual void OnTriggerExit2D(Collider2D collider2D)
     {
-        CharacterCtrl characterCtrl = collider2D.GetComponent<CharacterCtrl>();
+        CharacterCtrl characterCtrl = collider2D.transform.GetComponent<CharacterCtrl>();
         if (characterCtrl == null) return;
         this.SetObjTargeting(null);
     }
 
-   
+
 }

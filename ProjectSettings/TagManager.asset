@@ -41,17 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-<<<<<<< HEAD
-  - name: bg
-    uniqueID: 2630200159
-    locked: 0
-  - name: item
-    uniqueID: 1186515673
-=======
   - name: GamePlay
-    uniqueID: 4189724847
+    uniqueID: 289600153
     locked: 0
   - name: UI
-    uniqueID: 3864262521
->>>>>>> 8e6ec14cdb8fb96bb49a2d849c547a923a9ba2be
+    uniqueID: 701991849
     locked: 0

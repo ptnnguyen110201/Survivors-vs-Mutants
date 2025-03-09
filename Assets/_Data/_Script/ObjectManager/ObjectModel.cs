@@ -11,26 +11,10 @@ public abstract class ObjectModel<T> : LoadComPonent
     [SerializeField] protected Color32 orginalColor = Color.white;
     [SerializeField] protected Color32 fireColor = new Color32(255, 127, 0, 255);
     [SerializeField] protected Color32 nowColor = new Color32(0, 0, 255, 255);
-    public abstract void ApplyEffect();
-
-
-    protected virtual void SpriteByEffect()
+    public virtual void ApplyEffect()
     {
-        if(this.effectName == "Fire") 
-        {
-            this.objectSpriteRenderer.color = this.fireColor;
-            return;
-        }
-        if (this.effectName == "Now")
-        {
-            this.objectSpriteRenderer.color = this.nowColor;
-            return;
-        }
+        // for override
     }
-
-
-
-
 
 
 

@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class EnemySpawner : Spawner<EnemyCtrl>
 {
- 
-    protected virtual void Start() 
+
+    protected void Start()
     {
-       InvokeRepeating( nameof(this.SpawnEnemy),0.1f,1f);
+
+        InvokeRepeating(nameof(this.SpawnEnemy), 1, 1);
     }
-    protected virtual void SpawnEnemy() 
+    public virtual void SpawnEnemy()
     {
         EnemyCtrl enemyCtrl = this.poolPrefabs.GetPrefabByName("Enemy");
         if (enemyCtrl == null) return;
-        Vector3 spawnPos = new Vector3(11, 0, -1);
-        EnemyCtrl newEnemy = this.Spawn(enemyCtrl, spawnPos);
+        PathMap pathMap = MapManager.Instance.CurrentMap.PathManager.GetRandomPathMap();
+        EnemyCtrl newEnemy = this.Spawn(enemyCtrl, pathMap.GetSpawnPoint());
+
+        EnemyMove enemyMove = (EnemyMove)newEnemy.ObjectMove;
+        enemyMove.SetPathMap(pathMap);
+
         newEnemy.gameObject.SetActive(true);
-        
+
     }
 
 }

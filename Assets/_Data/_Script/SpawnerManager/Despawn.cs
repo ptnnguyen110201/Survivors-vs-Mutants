@@ -10,10 +10,7 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
 
     protected virtual void OnDisable()
     {
-
         this.StopCoroutine(this.DespawnCheckingCoroutine());
-     
-
     }
     protected virtual void OnEnable()
     {

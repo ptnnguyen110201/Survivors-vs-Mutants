@@ -6,6 +6,8 @@ public abstract class ObjectTargeting<T> : LoadComPonent
 {
     [SerializeField] protected T objParent;
     [SerializeField] protected CircleCollider2D circleCollider2;
+    [SerializeField] protected Transform objTargeting;
+    public virtual void SetObjTargeting(Transform objTargeting) => this.objTargeting = objTargeting;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -16,7 +18,7 @@ public abstract class ObjectTargeting<T> : LoadComPonent
     protected virtual void LoadObjParent()
     {
         if (this.objParent != null) return;
-        this.objParent = transform.GetComponentInParent<T>();
+        this.objParent = transform.GetComponentInParent<T>(true);
         Debug.Log(transform.name + ": Load ObjParent", gameObject);
     }
 

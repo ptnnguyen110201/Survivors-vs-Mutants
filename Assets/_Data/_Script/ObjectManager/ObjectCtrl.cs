@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ObjectCtrl <T> : LoadComPonent
+public abstract class ObjectCtrl<T> : PoolObj 
 {
+    [Header("Object Base Ctrl")]
     [SerializeField] protected ObjectAnimator<T> objectAnimator;
     public ObjectAnimator<T> ObjectAnimator => objectAnimator;
 
@@ -13,19 +14,12 @@ public abstract class ObjectCtrl <T> : LoadComPonent
     [SerializeField] protected ObjectMove<T> objectMove;
     public ObjectMove<T> ObjectMove => objectMove;
 
-    [SerializeField] protected ObjectAttack<T> objectAttack;
-    public ObjectAttack<T> ObjectAttack => objectAttack;
-
-    [SerializeField] protected ObjectTargeting<T> objectTargeting;
-    public ObjectTargeting<T> ObjectTargeting => objectTargeting;
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadObjectAnimator();
         this.LoadObjectMove();
-        this.LoadObjectAttack();
         this.LoadObjectModel();
-        this.LoadObjectTargeting();
     }
     protected virtual void LoadObjectAnimator()
     {
@@ -46,18 +40,4 @@ public abstract class ObjectCtrl <T> : LoadComPonent
         Debug.Log(transform.name + ": Load ObjectMove ", gameObject);
     }
 
-    protected virtual void LoadObjectAttack()
-    {
-        if (this.objectAttack != null) return;
-        this.objectAttack = transform.GetComponentInChildren<ObjectAttack<T>>();
-        Debug.Log(transform.name + ": Load ObjectAttack ", gameObject);
-    }
-
-
-    protected virtual void LoadObjectTargeting()
-    {
-        if (this.objectTargeting != null) return;
-        this.objectTargeting = transform.GetComponentInChildren<ObjectTargeting<T>>();
-        Debug.Log(transform.name + ":Load ObjectTargeting ", gameObject);
-    }
 }

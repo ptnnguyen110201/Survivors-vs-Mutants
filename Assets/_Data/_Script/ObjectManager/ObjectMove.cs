@@ -8,6 +8,8 @@ public abstract class ObjectMove <T> : LoadComPonent
     [SerializeField] protected float moveSpeed; 
     [SerializeField] protected Vector3 moveDirection;
     [SerializeField] protected bool canMove = false;
+
+    [SerializeField] protected ObjectAnimationEnum objectAnimationEnum;
     public abstract void Moving();
     public virtual void SetMoveSpeed(float moveSpeed ) => this.moveSpeed = moveSpeed;
     public virtual void SetMoveDirection(Vector3 moveDirection) => this.moveDirection = moveDirection;

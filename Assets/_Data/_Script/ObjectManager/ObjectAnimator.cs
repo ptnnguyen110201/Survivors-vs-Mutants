@@ -9,7 +9,8 @@ public abstract class ObjectAnimator<T> : LoadComPonent
     [SerializeField] protected Animator objAnimator;
     public Animator ObjAnimator => objAnimator;
 
-    [SerializeField] protected float objAnimationTimer;
+    [SerializeField] protected int objAnimationTimer;
+    public int ObjAnimationTimer => objAnimationTimer;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -18,27 +19,27 @@ public abstract class ObjectAnimator<T> : LoadComPonent
 
 
     }
-    public float GetAnimationDuration(string stateName)
+    public int GetAnimationDuration(ObjectAnimationEnum objectAnimationEnum)
     {
-        if (this.objAnimator == null) return 0f; 
+        if (this.objAnimator == null) return 0; 
         AnimatorStateInfo stateInfo = this.objAnimator.GetCurrentAnimatorStateInfo(0);
-        return stateInfo.length;
+        return (int)stateInfo.length;
     }
 
-    public virtual void SetTriggerAnimation(string AnimationName) 
+    public virtual void SetTriggerAnimation(ObjectAnimationEnum objectAnimationEnum) 
     {
         if (this.objAnimator == null) return;
-        if (AnimationName == string.Empty) return;
-        this.objAnimator.SetTrigger(AnimationName);
-        this.objAnimationTimer = this.GetAnimationDuration(AnimationName);
+        if (objectAnimationEnum == ObjectAnimationEnum.None) return;
+        this.objAnimator.SetTrigger(objectAnimationEnum.ToString());
+        this.objAnimationTimer = this.GetAnimationDuration(objectAnimationEnum);
 
     }
-    public virtual void SetBoolAnimation(string AnimationName, bool AnimationBool)
+    public virtual void SetBoolAnimation(ObjectAnimationEnum objectAnimationEnum, bool AnimationBool)
     {
         if (this.objAnimator == null) return;
-        if (AnimationName == string.Empty) return;
-        this.objAnimator.SetBool(AnimationName, AnimationBool);
-        this.objAnimationTimer = this.GetAnimationDuration(AnimationName);
+        if (objectAnimationEnum == ObjectAnimationEnum.None) return;
+        this.objAnimator.SetBool(objectAnimationEnum.ToString(), AnimationBool);
+        this.objAnimationTimer = this.GetAnimationDuration(objectAnimationEnum);
     }
 
 
