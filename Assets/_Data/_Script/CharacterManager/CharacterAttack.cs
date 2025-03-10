@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : ObjectAttack<EnemyCtrl>
+public class CharacterAttack : ObjectAttack<CharacterCtrl>
 {
     protected override void ResetValue()
     {
         base.ResetValue();
         this.coolDownTime = 1;
         this.coolDownTimer = 1;
-        this.objectAnimationEnum = ObjectAnimationEnum.isAttacking;
+        this.objectAnimationEnum = ObjectAnimationEnum.None;
     }
     public override void Attacking()
     {
         if (!this.canAttack) return;
         if (!this.IsCanAttack()) return;
-        this.ObjParent.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum);
-        Invoke(nameof(this.SpawnBullet), this.ObjParent.ObjectAnimator.ObjAnimationTimer - 0.2f);
+        //this.ObjParent.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum);
+        Invoke(nameof(this.SpawnBullet), this.ObjParent.ObjectAnimator.ObjAnimationTimer);
     }
 
-  
+
     protected virtual void SpawnBullet() 
     {
         BulletSpawner spawner = FindAnyObjectByType<BulletSpawner>();
@@ -29,10 +29,10 @@ public class EnemyAttack : ObjectAttack<EnemyCtrl>
 
         BulletCtrl newBullet = spawner.Spawn(bulletCtrl, this.attackPoint.transform.position);
 
-        Vector3 bulletDirection = Vector3.left;
+        Vector3 bulletDirection = Vector3.right;
 
         newBullet.ObjectMove.SetMoveDirection(bulletDirection);
-        newBullet.transform.right = bulletDirection;
+
         newBullet.gameObject.SetActive(true);
     }
 }

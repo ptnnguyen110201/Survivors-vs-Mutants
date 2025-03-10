@@ -5,6 +5,11 @@ using UnityEngine;
 public class EnemyDamageReceiver : ObjectDamageReciever
 {
     [SerializeField] protected EnemyCtrl enemyCtrl;
+    protected override void Reborn()
+    {
+        base.Reborn();
+        this.enemyCtrl.CircleCollider2D.enabled = true;
+    }
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -19,6 +24,13 @@ public class EnemyDamageReceiver : ObjectDamageReciever
     {
         base.OnDead();
         this.enemyCtrl.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum);
+        this.enemyCtrl.ObjectMove.SetCanMove(false);
+        this.enemyCtrl.CircleCollider2D.enabled = false;
+        Invoke(nameof(this.Despawn), this.enemyCtrl.ObjectAnimator.ObjAnimationTimer);
+    }
+    protected virtual void Despawn() 
+    {
+        this.enemyCtrl.DespawnBase.DespawnObj();
     }
 
     protected virtual void LoadEnemyCtrl()

@@ -7,6 +7,8 @@ public class BulletCtrl : ObjectCtrl<BulletCtrl>
     [Header("Bullet Ctrl")]
     [SerializeField] protected BulletDamageSender bulletDamageSender;
     public BulletDamageSender BulletDamageSender => bulletDamageSender;
+
+
     protected virtual void OnEnable()
     {
         BulletManager bulletManager = FindAnyObjectByType<BulletManager>();

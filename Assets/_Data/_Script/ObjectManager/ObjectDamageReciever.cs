@@ -31,6 +31,7 @@ public abstract class ObjectDamageReciever: LoadComPonent
     protected virtual void Reborn()
     {
         this.currentHp = this.maxHp;
+        this.isDead = false;
     }
     
 

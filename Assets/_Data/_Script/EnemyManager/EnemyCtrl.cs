@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
 {
     [Header("Enemy Ctrl")]
+    [SerializeField] protected CircleCollider2D circleCollider2D;
+    public CircleCollider2D CircleCollider2D => circleCollider2D;
+
     [SerializeField] protected ObjectTargeting<EnemyCtrl> objectTargeting;
     public ObjectTargeting<EnemyCtrl> ObjectTargeting => objectTargeting;
 
@@ -14,12 +17,15 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
     [SerializeField] protected EnemyDamageReceiver enemyDamageReceiver;
     public EnemyDamageReceiver EnemyDamageReceiver => enemyDamageReceiver;
 
+
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadObjectTargeting();
         this.LoadObjectAttack();
         this.LoadEnemyDamageReceiver();
+        this.LoadCircleCollider2D();
     }
     protected virtual void OnEnable()
     {
@@ -49,5 +55,11 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
         Debug.Log(transform.name + ": Load EnemyDamageReceiver ", gameObject);
     }
 
-  
+    protected virtual void LoadCircleCollider2D()
+    {
+        if (this.circleCollider2D != null) return;
+        this.circleCollider2D = transform.GetComponent<CircleCollider2D>();
+        Debug.Log(transform.name + ": Load CircleCollider2D ", gameObject);
+    }
+
 }

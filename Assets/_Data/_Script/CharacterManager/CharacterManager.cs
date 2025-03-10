@@ -13,7 +13,7 @@ public class CharacterManager : ObjectManager<CharacterCtrl>
     {
         foreach (CharacterCtrl character in this.T_List)
         {
-            if (!character.gameObject.activeSelf) return;
+            if (!character.gameObject.activeSelf) continue;
             character.ObjectTargeting.CheckTargeting();
             character.ObjectMove.Moving();
             character.ObjectAttack.Attacking();

@@ -14,6 +14,7 @@ public class EnemySpawner : Spawner<EnemyCtrl>
     {
         EnemyCtrl enemyCtrl = this.poolPrefabs.GetPrefabByName("Enemy");
         if (enemyCtrl == null) return;
+
         PathMap pathMap = MapManager.Instance.CurrentMap.PathManager.GetRandomPathMap();
         EnemyCtrl newEnemy = this.Spawn(enemyCtrl, pathMap.GetSpawnPoint());
 

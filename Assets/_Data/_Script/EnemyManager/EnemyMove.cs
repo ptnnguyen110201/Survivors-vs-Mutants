@@ -7,7 +7,12 @@ public class EnemyMove : ObjectMove<EnemyCtrl>
     [SerializeField] protected PathMap pathMap;
     [SerializeField] protected int pointIndex = 0;
     [SerializeField] protected Vector3 nextPoint;
+
     [SerializeField] protected float stoppingDistance = 0.1f;
+    protected virtual void OnEnable() 
+    {
+        this.SetCanMove(true);
+    }
 
     public virtual void SetPathMap(PathMap PathMap)
     {
@@ -52,11 +57,13 @@ public class EnemyMove : ObjectMove<EnemyCtrl>
             return;
         }
 
-        Vector3 target = pathPoints[this.pointIndex];
-        transform.parent.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.parent.position, target) > stoppingDistance) return;
+         this.nextPoint = pathPoints[this.pointIndex];
+        transform.parent.position = Vector3.MoveTowards(transform.parent.position, this.nextPoint, this.moveSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.parent.position, this.nextPoint) > this.stoppingDistance) return;
 
         this.pointIndex++;
 
     }
+
+    //protected virtual void CheckingMove() => this.canMove = !this.ObjParent.EnemyDamageReceiver.IsDead();
 }

@@ -13,7 +13,7 @@ public class BulletManager : ObjectManager<BulletCtrl>
     {
         foreach (BulletCtrl bulletCtrl in this.T_List)
         {
-            if (!bulletCtrl.gameObject.activeSelf) return;
+            if (!bulletCtrl.gameObject.activeSelf) continue;
             bulletCtrl.ObjectMove.Moving();
         }
     }

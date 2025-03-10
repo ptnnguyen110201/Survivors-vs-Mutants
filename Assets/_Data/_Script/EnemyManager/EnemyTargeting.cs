@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EnemyTargeting : ObjectTargeting<EnemyCtrl>
 {
+    [SerializeField] protected CircleCollider2D circleCollider2D;
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadCircleCollider2D();
+    }
     public virtual bool isTargeting()
     {
 
@@ -12,7 +18,6 @@ public class EnemyTargeting : ObjectTargeting<EnemyCtrl>
     }
     public override void CheckTargeting()
     {
-        this.objParent.ObjectMove.SetCanMove(!this.isTargeting());
         this.objParent.ObjectAttack.SetCanAttack(this.isTargeting());
     }
 
@@ -21,12 +26,20 @@ public class EnemyTargeting : ObjectTargeting<EnemyCtrl>
         CharacterCtrl characterCtrl = collider2D.transform.GetComponent<CharacterCtrl>();
         if (characterCtrl == null) return;
         this.SetObjTargeting(characterCtrl.transform);
+        this.objParent.ObjectMove.SetCanMove(!this.isTargeting());
     }
     protected virtual void OnTriggerExit2D(Collider2D collider2D)
     {
         CharacterCtrl characterCtrl = collider2D.transform.GetComponent<CharacterCtrl>();
         if (characterCtrl == null) return;
         this.SetObjTargeting(null);
+        this.objParent.ObjectMove.SetCanMove(!this.isTargeting());
+    }
+    protected virtual void LoadCircleCollider2D()
+    {
+        if (this.circleCollider2D != null) return;
+        this.circleCollider2D = transform.GetComponent<CircleCollider2D>();
+        Debug.Log(transform.name + ": Load CircleCollider2D", gameObject);
     }
 
 

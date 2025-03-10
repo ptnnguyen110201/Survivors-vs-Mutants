@@ -13,7 +13,7 @@ public class EnemyManager : ObjectManager<EnemyCtrl>
     {
         foreach (EnemyCtrl enemy in this.T_List)
         {
-            if (!enemy.gameObject.activeSelf) return;
+            if (!enemy.gameObject.activeSelf) continue;
             enemy.ObjectTargeting.CheckTargeting();
             enemy.ObjectMove.Moving();
             enemy.ObjectAttack.Attacking();

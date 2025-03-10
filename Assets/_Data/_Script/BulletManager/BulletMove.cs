@@ -9,17 +9,12 @@ public class BulletMove : ObjectMove<BulletCtrl>
     {
         base.ResetValue();
         this.objectAnimationEnum = ObjectAnimationEnum.None;
+        this.moveSpeed = 1; 
 
     }
     public override void Moving()
     {
-        if (!this.canMove)
-        {
-            //this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum.ToString(), this.canMove);
-            return;
-        }
-       // transform.parent.position += this.moveDirection * this.moveSpeed * Time.deltaTime;
-       // this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum.ToString(), this.canMove);
+        transform.parent.position += this.moveDirection * this.moveSpeed * Time.deltaTime;
     }
 
 
