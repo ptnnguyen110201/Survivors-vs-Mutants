@@ -15,12 +15,15 @@ public class PathManager : LoadComPonent
     protected virtual void LoadPathMaps() 
     {
         if (this.pathMaps.Count > 0) return;
+        int laneIndex = 0;
         foreach(Transform obj in this.transform) 
         {
             if(obj == null) continue;
             PathMap pathMap = obj.GetComponent<PathMap>();
             if (pathMap == null) continue;
             pathMap.LoadPoints();
+            pathMap.SetMapLane(laneIndex);
+            laneIndex++;
             this.pathMaps.Add(pathMap);
        
         }

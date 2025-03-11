@@ -4,43 +4,39 @@ using UnityEngine;
 
 public class EnemyTargeting : ObjectTargeting<EnemyCtrl>
 {
-    [SerializeField] protected CircleCollider2D circleCollider2D;
-    protected override void LoadComponents()
-    {
-        base.LoadComponents();
-        this.LoadCircleCollider2D();
-    }
+    [SerializeField] protected float distanceTarget;
     public virtual bool isTargeting()
     {
+        List<CharacterCtrl> characterCtrls = FindAnyObjectByType<CharacterManager>().T_ListObj;
+        CharacterCtrl closeCharacter = null;
+        float minDistance = float.MaxValue;
 
-        if (this.objTargeting == null) return false;
-        return true;
+        foreach (CharacterCtrl characterCtrl in characterCtrls)
+        {
+            if (this.objParent.Lane != characterCtrl.Lane) continue; 
+
+            float distance = Mathf.Abs(characterCtrl.transform.position.x - this.objParent.transform.position.x);
+
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closeCharacter = characterCtrl;
+            }
+        }
+
+  
+        return closeCharacter != null && minDistance < distanceTarget;
     }
+
     public override void CheckTargeting()
     {
-        this.objParent.ObjectAttack.SetCanAttack(this.isTargeting());
+        if (this.objParent.EnemyDamageReceiver.IsDead()) return;
+        bool hasTarget = this.isTargeting();
+        this.objParent.ObjectMove.SetCanMove(!hasTarget); 
+        this.objParent.ObjectAttack.SetCanAttack(hasTarget); 
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collider2D)
-    {
-        CharacterCtrl characterCtrl = collider2D.transform.GetComponent<CharacterCtrl>();
-        if (characterCtrl == null) return;
-        this.SetObjTargeting(characterCtrl.transform);
-        this.objParent.ObjectMove.SetCanMove(!this.isTargeting());
-    }
-    protected virtual void OnTriggerExit2D(Collider2D collider2D)
-    {
-        CharacterCtrl characterCtrl = collider2D.transform.GetComponent<CharacterCtrl>();
-        if (characterCtrl == null) return;
-        this.SetObjTargeting(null);
-        this.objParent.ObjectMove.SetCanMove(!this.isTargeting());
-    }
-    protected virtual void LoadCircleCollider2D()
-    {
-        if (this.circleCollider2D != null) return;
-        this.circleCollider2D = transform.GetComponent<CircleCollider2D>();
-        Debug.Log(transform.name + ": Load CircleCollider2D", gameObject);
-    }
+
 
 
 }

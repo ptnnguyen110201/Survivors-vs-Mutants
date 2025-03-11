@@ -9,8 +9,6 @@ public abstract class ObjectDamageSender : LoadComPonent
         ObjectDamageReciever damageReceiver = collider2D.GetComponentInChildren<ObjectDamageReciever>();
         if (damageReceiver == null) return;
         this.Send(damageReceiver);
-        Debug.Log(collider2D.transform);
-
     }
     protected virtual void Send(ObjectDamageReciever damageReceiver) => damageReceiver.Deduct(this.damage);
     

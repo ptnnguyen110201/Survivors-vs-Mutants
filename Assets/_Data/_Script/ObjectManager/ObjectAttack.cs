@@ -40,6 +40,7 @@ public abstract class ObjectAttack<T> : LoadComPonent
     {
         if (this.attackPoint != null) return;
         this.attackPoint = transform.Find("AttackPoint").GetComponent<Transform>() ;
+        this.ObjParent = transform.GetComponentInParent<T>(true);
         Debug.Log(transform.name + ": Load ObjParent", gameObject);
     }
 }

@@ -8,7 +8,7 @@ public class EnemySpawner : Spawner<EnemyCtrl>
     protected void Start()
     {
 
-        InvokeRepeating(nameof(this.SpawnEnemy), 1, 1);
+        InvokeRepeating(nameof(this.SpawnEnemy), 1,1);
     }
     public virtual void SpawnEnemy()
     {
@@ -17,7 +17,7 @@ public class EnemySpawner : Spawner<EnemyCtrl>
 
         PathMap pathMap = MapManager.Instance.CurrentMap.PathManager.GetRandomPathMap();
         EnemyCtrl newEnemy = this.Spawn(enemyCtrl, pathMap.GetSpawnPoint());
-
+        newEnemy.SetLane(pathMap.GetMapLane());
         EnemyMove enemyMove = (EnemyMove)newEnemy.ObjectMove;
         enemyMove.SetPathMap(pathMap);
 

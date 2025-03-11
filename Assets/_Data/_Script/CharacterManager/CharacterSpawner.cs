@@ -20,10 +20,14 @@ public class CharacterSpawner : Spawner<CharacterCtrl>
             CharacterCtrl characterCtrl = this.poolPrefabs.GetPrefabByName("Char01");
             if (characterCtrl == null) return;
 
-            Vector3 spawnPoint = MapManager.Instance.CurrentMap.PlacementMap.GetPlacePos(this.mousePosition);
-            if (spawnPoint == Vector3.zero) return;
-            CharacterCtrl newCharacter = this.Spawn(characterCtrl, spawnPoint);
+            PlaceMap placeMap = MapManager.Instance.CurrentMap.PlacementMap.GetPlaceMap(this.mousePosition);
+            if (placeMap == null) return;
 
+            Vector3 spawnPos = placeMap.GetPlacePos(this.mousePosition);
+            if(spawnPos == Vector3.zero) return;
+
+            CharacterCtrl newCharacter = this.Spawn(characterCtrl, spawnPos);
+            newCharacter.SetLane(placeMap.GetMapLane());
             newCharacter.gameObject.SetActive(true);
         }
 

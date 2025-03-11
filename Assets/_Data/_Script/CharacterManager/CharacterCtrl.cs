@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class CharacterCtrl : ObjectCtrl<CharacterCtrl>
 {
+    [Header("Lane")] protected int lane;
+    public int Lane => lane;
+    [SerializeField] protected bool isGround = false;
+    public bool IsGround => isGround;
+
     [Header("Enemy Ctrl")]
     [SerializeField] protected ObjectTargeting<CharacterCtrl> objectTargeting;
     public ObjectTargeting<CharacterCtrl> ObjectTargeting => objectTargeting;
@@ -48,4 +53,7 @@ public class CharacterCtrl : ObjectCtrl<CharacterCtrl>
         this.enemyDamageReceiver = transform.GetComponentInChildren<EnemyDamageReceiver>();
         Debug.Log(transform.name + ": Load EnemyDamageReceiver ", gameObject);
     }
+
+
+    public virtual void SetLane(int Lane ) => this.lane = Lane;
 }

@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class PathMap : LoadComPonent
 {
+    [SerializeField] protected int mapLane;
     [SerializeField] protected Tilemap tileMap;
     [SerializeField] protected List<Vector3> Points;
     protected override void LoadComponents()
@@ -25,7 +26,7 @@ public class PathMap : LoadComPonent
     {
        
         if (this.tileMap == null) return;
-
+        this.Points.Clear();
 
         BoundsInt bounds = this.tileMap.cellBounds;
         Vector3 tileSize = this.tileMap.layoutGrid.cellSize;
@@ -47,4 +48,7 @@ public class PathMap : LoadComPonent
 
     public virtual List<Vector3> GetPoints() => this.Points;
     public virtual Vector3 GetSpawnPoint() => this.Points[0];
+
+    public virtual int GetMapLane() => this.mapLane;
+    public virtual void SetMapLane(int laneMap) => this.mapLane = laneMap;
 }

@@ -9,6 +9,8 @@ public class MapCtrl : LoadComPonent
     [SerializeField] protected PathManager pathManager;
     public PathManager PathManager => pathManager;
 
+
+
     protected override void LoadComponents()
     {
         base.LoadComponents();

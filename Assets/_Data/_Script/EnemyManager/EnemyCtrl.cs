@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
 {
+    [Header("Lane")]
+    [SerializeField] protected int lane;
+    public int Lane => lane;
+    [SerializeField] protected bool isGround = false;
+    public bool IsGround => isGround;
+
     [Header("Enemy Ctrl")]
     [SerializeField] protected CircleCollider2D circleCollider2D;
     public CircleCollider2D CircleCollider2D => circleCollider2D;
@@ -62,4 +68,5 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
         Debug.Log(transform.name + ": Load CircleCollider2D ", gameObject);
     }
 
+    public virtual void SetLane(int Lane) => this.lane = Lane;
 }
