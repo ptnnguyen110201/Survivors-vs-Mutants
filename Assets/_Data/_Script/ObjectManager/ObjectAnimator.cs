@@ -19,27 +19,27 @@ public abstract class ObjectAnimator<T> : LoadComPonent
 
 
     }
-    public int GetAnimationDuration(ObjectAnimationEnum objectAnimationEnum)
+    public int GetAnimationDuration(string animationName)
     {
         if (this.objAnimator == null) return 0; 
         AnimatorStateInfo stateInfo = this.objAnimator.GetCurrentAnimatorStateInfo(0);
         return (int)stateInfo.length;
     }
 
-    public virtual void SetTriggerAnimation(ObjectAnimationEnum objectAnimationEnum) 
+    public virtual void SetTriggerAnimation(string animationName) 
     {
         if (this.objAnimator == null) return;
-        if (objectAnimationEnum == ObjectAnimationEnum.None) return;
-        this.objAnimator.SetTrigger(objectAnimationEnum.ToString());
-        this.objAnimationTimer = this.GetAnimationDuration(objectAnimationEnum);
+        if (animationName == string.Empty) return;
+        this.objAnimator.SetTrigger(animationName.ToString());
+        this.objAnimationTimer = this.GetAnimationDuration(animationName);
 
     }
-    public virtual void SetBoolAnimation(ObjectAnimationEnum objectAnimationEnum, bool AnimationBool)
+    public virtual void SetBoolAnimation(string animationName, bool AnimationBool)
     {
         if (this.objAnimator == null) return;
-        if (objectAnimationEnum == ObjectAnimationEnum.None) return;
-        this.objAnimator.SetBool(objectAnimationEnum.ToString(), AnimationBool);
-        this.objAnimationTimer = this.GetAnimationDuration(objectAnimationEnum);
+        if (animationName == string.Empty) return;
+        this.objAnimator.SetBool(animationName.ToString(), AnimationBool);
+        this.objAnimationTimer = this.GetAnimationDuration(animationName);
     }
 
 

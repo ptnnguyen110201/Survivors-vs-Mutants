@@ -16,7 +16,7 @@ public class CharacterManager : ObjectManager<CharacterCtrl>
             if (!character.gameObject.activeSelf) continue;
             character.ObjectTargeting.CheckTargeting();
             character.ObjectMove.Moving();
-            character.ObjectAttack.Attacking();
+            character.CharacterAttack.Attacking();
 
         }
     }

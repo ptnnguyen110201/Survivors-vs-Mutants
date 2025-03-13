@@ -34,7 +34,6 @@ public class EnemyManager : ObjectManager<EnemyCtrl>
         foreach (EnemyCtrl enemy in this.T_ListObj)
         {
             if (enemy == null) continue;
-
             if (lanes.Contains(enemy.Lane))
             {
                 float distanceX = enemy.transform.position.x - position.x; // Kho?ng c?ch theo tr?c X

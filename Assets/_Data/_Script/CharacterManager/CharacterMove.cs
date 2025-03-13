@@ -13,13 +13,7 @@ public class CharacterMove : ObjectMove<CharacterCtrl>
     }
     public override void Moving()
     {
-        if (!this.canMove)
-        {
-            this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum, this.canMove);
-            return;
-        }
-        transform.parent.position += this.moveDirection * this.moveSpeed * Time.deltaTime;
-        this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum, this.canMove);
+        return;
     }
 
 

@@ -4,7 +4,13 @@ using UnityEngine;
 
 public abstract class ObjectCtrl<T> : PoolObj 
 {
+
+    [Header("Object Profile")]
+    [SerializeField] protected ObjectProfile objectProfile;
+    public ObjectProfile ObjectProfile => objectProfile;
+
     [Header("Object Base Ctrl")]
+
     [SerializeField] protected ObjectAnimator<T> objectAnimator;
     public ObjectAnimator<T> ObjectAnimator => objectAnimator;
 
@@ -12,7 +18,7 @@ public abstract class ObjectCtrl<T> : PoolObj
     public ObjectModel<T> ObjectModel => objectModel;
 
     [SerializeField] protected ObjectMove<T> objectMove;
-    public ObjectMove<T> ObjectMove => objectMove;
+    public ObjectMove<T> ObjectMove => objectMove; 
 
     protected override void LoadComponents()
     {

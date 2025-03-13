@@ -23,7 +23,7 @@ public class EnemyDamageReceiver : ObjectDamageReciever
     protected override void OnDead()
     {
         base.OnDead();
-        this.enemyCtrl.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum);
+        this.enemyCtrl.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum.ToString());
         this.enemyCtrl.ObjectMove.SetCanMove(false);
         this.enemyCtrl.CircleCollider2D.enabled = false;
         Invoke(nameof(this.Despawn), this.enemyCtrl.ObjectAnimator.ObjAnimationTimer);

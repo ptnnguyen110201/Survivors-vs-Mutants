@@ -13,31 +13,35 @@ public class CharacterCtrl : ObjectCtrl<CharacterCtrl>
     [SerializeField] protected ObjectTargeting<CharacterCtrl> objectTargeting;
     public ObjectTargeting<CharacterCtrl> ObjectTargeting => objectTargeting;
 
-    [SerializeField] protected ObjectAttack<CharacterCtrl> objectAttack;
-    public ObjectAttack<CharacterCtrl> ObjectAttack => objectAttack;
+    [SerializeField] protected CharacterAttack characterAttack;
+    public CharacterAttack CharacterAttack => characterAttack;
 
-    [SerializeField] protected EnemyDamageReceiver enemyDamageReceiver;
-    public EnemyDamageReceiver EnemyDamageReceiver => enemyDamageReceiver;
+    [SerializeField] protected CharacterDamageReceiver characterDamageReceiver;
+    public CharacterDamageReceiver CharacterDamageReceiver => characterDamageReceiver;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadObjectTargeting();
-        this.LoadObjectAttack();
+        this.LoadCharacterAttack();
         this.LoadCharacterDamageReceiver();
     }
     protected virtual void OnEnable()
     {
-        CharacterManager characterManager = FindAnyObjectByType<CharacterManager>();
-        if (characterManager == null) return;
-        characterManager.RegisterObject(this);
+        CharacterManagerCtrl.Instance.CharacterManager.RegisterObject(this);
+
+        CharacterProfile characterProfile = this.objectProfile as CharacterProfile;
+        this.characterDamageReceiver.SetMaxHp(characterProfile.maxHP);
+        this.characterAttack.SetDamage(characterProfile.attackDamage);
+        this.characterAttack.SetCoolDownTimer(characterProfile.fireRate);
+        this.objectMove.SetMoveSpeed(characterProfile.moveSpeed);
     }
 
-    protected virtual void LoadObjectAttack()
+    protected virtual void LoadCharacterAttack()
     {
-        if (this.objectAttack != null) return;
-        this.objectAttack = transform.GetComponentInChildren<ObjectAttack<CharacterCtrl>>();
-        Debug.Log(transform.name + ": Load ObjectAttack ", gameObject);
+        if (this.characterAttack != null) return;
+        this.characterAttack = transform.GetComponentInChildren<CharacterAttack>();
+        Debug.Log(transform.name + ": Load CharacterAttack ", gameObject);
     }
 
     protected virtual void LoadObjectTargeting()
@@ -49,9 +53,9 @@ public class CharacterCtrl : ObjectCtrl<CharacterCtrl>
 
     protected virtual void LoadCharacterDamageReceiver()
     {
-        if (this.enemyDamageReceiver != null) return;
-        this.enemyDamageReceiver = transform.GetComponentInChildren<EnemyDamageReceiver>();
-        Debug.Log(transform.name + ": Load EnemyDamageReceiver ", gameObject);
+        if (this.characterDamageReceiver != null) return;
+        this.characterDamageReceiver = transform.GetComponentInChildren<CharacterDamageReceiver>();
+        Debug.Log(transform.name + ": Load CharacterDamageReceiver ", gameObject);
     }
 
 

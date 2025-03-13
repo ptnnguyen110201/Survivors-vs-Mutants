@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyDespawn : Despawn<EnemyCtrl>
 {
-    protected override void ResetValue()
+    protected override IEnumerator DespawnCoroutine()
     {
-        base.ResetValue();
-        this.isDespawnByTime = false;
+        yield break;
     }
+
+  
 }

@@ -11,9 +11,7 @@ public class BulletCtrl : ObjectCtrl<BulletCtrl>
 
     protected virtual void OnEnable()
     {
-        BulletManager bulletManager = FindAnyObjectByType<BulletManager>();
-        if (bulletManager == null) return;
-        bulletManager.RegisterObject(this);
+        BulletManagerCtrl.Instance.BulletManager.RegisterObject(this);
     }
     protected override void LoadComponents()
     {

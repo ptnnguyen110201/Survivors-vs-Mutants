@@ -7,7 +7,7 @@ public class EnemyTargeting : ObjectTargeting<EnemyCtrl>
     [SerializeField] protected float distanceTarget;
     public virtual bool isTargeting()
     {
-        List<CharacterCtrl> characterCtrls = FindAnyObjectByType<CharacterManager>().T_ListObj;
+        List<CharacterCtrl> characterCtrls = CharacterManagerCtrl.Instance.CharacterManager.T_ListObj;
         CharacterCtrl closeCharacter = null;
         float minDistance = float.MaxValue;
 

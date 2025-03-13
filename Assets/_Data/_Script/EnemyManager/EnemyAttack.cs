@@ -15,19 +15,17 @@ public class EnemyAttack : ObjectAttack<EnemyCtrl>
     {
         if (!this.canAttack) return;
         if (!this.IsCanAttack()) return;
-        this.ObjParent.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum);
+        this.ObjParent.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum.ToString());
         Invoke(nameof(this.SpawnBullet), this.ObjParent.ObjectAnimator.ObjAnimationTimer - 0.2f);
     }
 
   
     protected virtual void SpawnBullet() 
     {
-        BulletSpawner spawner = FindAnyObjectByType<BulletSpawner>();
-        if (spawner == null) return;
-        BulletCtrl bulletCtrl = spawner.PoolPrefabs.GetPrefabByName("Bullet");
+        BulletCtrl bulletCtrl = BulletManagerCtrl.Instance.BulletSpawner.PoolPrefabs.GetPrefabByName("EnemyAttack");
         if (bulletCtrl == null) return;
 
-        BulletCtrl newBullet = spawner.Spawn(bulletCtrl, this.attackPoint.transform.position);
+        BulletCtrl newBullet = BulletManagerCtrl.Instance.BulletSpawner.Spawn(bulletCtrl, this.attackPoint.transform.position);
 
         Vector3 bulletDirection = Vector3.left;
 

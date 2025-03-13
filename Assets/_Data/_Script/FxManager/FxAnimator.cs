@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectManagerCtrl : MonoBehaviour
+public class FxAnimator : ObjectAnimator<FxCtrl>
 {
-    
+ 
+ 
+
 }

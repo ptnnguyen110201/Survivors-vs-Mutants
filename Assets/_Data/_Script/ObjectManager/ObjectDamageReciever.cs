@@ -34,5 +34,5 @@ public abstract class ObjectDamageReciever: LoadComPonent
         this.isDead = false;
     }
     
-
+    public virtual void SetMaxHp(int maxHp) => this.maxHp = maxHp;
 }

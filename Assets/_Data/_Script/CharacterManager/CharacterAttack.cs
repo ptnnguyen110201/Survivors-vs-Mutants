@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CharacterAttack : ObjectAttack<CharacterCtrl>
 {
-  //  [SerializeField] protected bool canShootBackward = false;
+    //  [SerializeField] protected bool canShootBackward = false;
+    [SerializeField] protected int attackDamage;
 
+    public virtual void SetDamage(int attackDamage) => this.attackDamage = attackDamage;
     protected override void ResetValue()
     {
         base.ResetValue();
@@ -18,24 +20,40 @@ public class CharacterAttack : ObjectAttack<CharacterCtrl>
         if (!this.canAttack) return;
         if (!this.IsCanAttack()) return;
         //this.ObjParent.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum);
+        this.SpawnFx();
         Invoke(nameof(this.SpawnBullet), this.ObjParent.ObjectAnimator.ObjAnimationTimer);
     }
 
 
     protected virtual void SpawnBullet() 
     {
-        BulletSpawner spawner = FindAnyObjectByType<BulletSpawner>();
-        if (spawner == null) return;
-        BulletCtrl bulletCtrl = spawner.PoolPrefabs.GetPrefabByName("Bullet");
+
+        BulletCtrl bulletCtrl = BulletManagerCtrl.Instance.BulletSpawner.PoolPrefabs.GetPrefabByName("Bullet");
         if (bulletCtrl == null) return;
 
-        BulletCtrl newBullet = spawner.Spawn(bulletCtrl, this.attackPoint.transform.position);
+        BulletCtrl newBullet = BulletManagerCtrl.Instance.BulletSpawner.Spawn(bulletCtrl, this.attackPoint.transform.position);
 
         Vector3 bulletDirection = Vector3.right;
 
         newBullet.ObjectMove.SetMoveDirection(bulletDirection);
-
+        newBullet.BulletDamageSender.SetDamage(this.attackDamage);
         newBullet.gameObject.SetActive(true);
+
+    }
+
+    protected virtual void SpawnFx() 
+    {
+     
+        FxCtrl fxCtrl = FxManagerCtrl.Instance.FxSpawner.PoolPrefabs.GetPrefabByName("ShootingFx");
+        if (fxCtrl == null) return;
+
+        FxCtrl newFx = FxManagerCtrl.Instance.FxSpawner.Spawn(fxCtrl, this.attackPoint.transform.position);
+
+        Vector3 bulletDirection = Vector3.right;
+
+        newFx.ObjectMove.SetMoveDirection(bulletDirection);
+
+        newFx.gameObject.SetActive(true);
     }
    /* protected virtual void SpawnBullet()
     {

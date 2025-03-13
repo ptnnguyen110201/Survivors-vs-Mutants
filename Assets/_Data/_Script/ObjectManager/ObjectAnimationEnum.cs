@@ -6,4 +6,5 @@ public enum ObjectAnimationEnum
     isAttacking = 1,
     IsMoving = 2,
     IsDead = 3,
+
 }

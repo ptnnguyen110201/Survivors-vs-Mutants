@@ -38,12 +38,12 @@ public class EnemyMove : ObjectMove<EnemyCtrl>
     {
         if (!this.canMove)
         {
-            this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum, this.canMove);
+            this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum.ToString(), this.canMove);
             return;
         }
 
         this.MoveToNextPoint();
-        this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum, this.canMove);
+        this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum.ToString(), this.canMove);
     }
 
     protected virtual void MoveToNextPoint()

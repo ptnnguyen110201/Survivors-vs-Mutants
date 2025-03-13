@@ -35,9 +35,7 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
     }
     protected virtual void OnEnable()
     {
-        EnemyManager enemyStateManager = FindAnyObjectByType<EnemyManager>();
-        if (enemyStateManager == null) return;
-        enemyStateManager.RegisterObject(this);
+        EnemyManagerCtrl.Instance.EnemyManager.RegisterObject(this);
     }
 
     protected virtual void LoadObjectAttack()

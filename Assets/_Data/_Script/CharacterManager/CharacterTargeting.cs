@@ -17,7 +17,7 @@ public class CharacterTargeting : ObjectTargeting<CharacterCtrl>
     }
     public virtual bool isTargeting()
     {
-        this.enemyCtrls = FindAnyObjectByType<EnemyManager>().GetEnemiesInLanes(this.lanes, transform.parent.position, distanceTarget);
+        this.enemyCtrls = EnemyManagerCtrl.Instance.EnemyManager.GetEnemiesInLanes(this.lanes, transform.parent.position, distanceTarget);
         if (this.enemyCtrls.Count > 0) return true;
         return false;
     }
@@ -26,7 +26,7 @@ public class CharacterTargeting : ObjectTargeting<CharacterCtrl>
     {
 
         this.objParent.ObjectMove.SetCanMove(!this.isTargeting());
-        this.objParent.ObjectAttack.SetCanAttack(this.isTargeting());
+        this.objParent.CharacterAttack.SetCanAttack(this.isTargeting());
     }
 
 
