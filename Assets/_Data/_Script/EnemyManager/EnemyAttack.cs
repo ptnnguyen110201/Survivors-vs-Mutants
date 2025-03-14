@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemyAttack : ObjectAttack<EnemyCtrl>
 {
-    protected override void ResetValue()
+	[SerializeField] protected int attackDamage;
+
+	public virtual void SetDamage(int attackDamage) => this.attackDamage = attackDamage;
+	protected override void ResetValue()
     {
         base.ResetValue();
         this.coolDownTime = 1;

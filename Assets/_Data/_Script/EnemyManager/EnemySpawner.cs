@@ -12,7 +12,7 @@ public class EnemySpawner : Spawner<EnemyCtrl>
     }
     public virtual void SpawnEnemy()
     {
-        EnemyCtrl enemyCtrl = this.poolPrefabs.GetPrefabByName("Enemy");
+        EnemyCtrl enemyCtrl = this.poolPrefabs.GetPrefabByName("Enemy ("+Random.Range(0,3)+")");
         if (enemyCtrl == null) return;
 
         PathMap pathMap = MapManager.Instance.CurrentMap.PathManager.GetRandomPathMap();

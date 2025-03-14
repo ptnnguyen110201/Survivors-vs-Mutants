@@ -33,7 +33,7 @@ public class EnemyTargeting : ObjectTargeting<EnemyCtrl>
         if (this.objParent.EnemyDamageReceiver.IsDead()) return;
         bool hasTarget = this.isTargeting();
         this.objParent.ObjectMove.SetCanMove(!hasTarget); 
-        this.objParent.ObjectAttack.SetCanAttack(hasTarget); 
+        this.objParent.EnemyAttack.SetCanAttack(hasTarget); 
     }
 
 
