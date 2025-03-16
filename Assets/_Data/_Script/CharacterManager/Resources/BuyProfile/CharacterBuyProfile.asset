@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658d14faa1add35408e7e4dab74dc0cb, type: 3}
+  m_Name: CharacterBuyProfile
+  m_EditorClassIdentifier: 
+  ObjectType: 3
+  characterProfile: {fileID: 11400000, guid: a0a97c144902dde47bef33b96f3004e8, type: 2}
+  chacracterSprite: {fileID: 21300000, guid: 00fa1d38bb0ced842af9cf550ba1c3f3, type: 3}
+  chacracterCoints: 100
