@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectType: 2
   enemySprite: {fileID: 0}
-  maxHP: 2
-  attackDamage: 2
-  fireRate: 2
-  moveSpeed: 2
+  maxHP: 5
+  attackDamage: 1
+  fireRate: 1
+  moveSpeed: 1
