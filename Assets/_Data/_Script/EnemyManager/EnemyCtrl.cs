@@ -10,22 +10,25 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
     [SerializeField] protected bool isGround = false;
     public bool IsGround => isGround;
 
-    [Header("Enemy Ctrl")]
+	[Header("Enemy Ctrl")]
     [SerializeField] protected CircleCollider2D circleCollider2D;
     public CircleCollider2D CircleCollider2D => circleCollider2D;
 
     [SerializeField] protected ObjectTargeting<EnemyCtrl> objectTargeting;
     public ObjectTargeting<EnemyCtrl> ObjectTargeting => objectTargeting;
 
-    [SerializeField] protected ObjectAttack<EnemyCtrl> objectAttack;
-    public ObjectAttack<EnemyCtrl> ObjectAttack => objectAttack;
+    //[SerializeField] protected ObjectAttack<EnemyCtrl> objectAttack;
+    //public ObjectAttack<EnemyCtrl> ObjectAttack => objectAttack;
 
     [SerializeField] protected EnemyDamageReceiver enemyDamageReceiver;
     public EnemyDamageReceiver EnemyDamageReceiver => enemyDamageReceiver;
 
+	[SerializeField] protected EnemyAttack enemyAttack;
+	public EnemyAttack EnemyAttack => enemyAttack;
 
 
-    protected override void LoadComponents()
+
+	protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadObjectTargeting();
@@ -36,12 +39,18 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
     protected virtual void OnEnable()
     {
         EnemyManagerCtrl.Instance.EnemyManager.RegisterObject(this);
-    }
+
+		EnemyProfile enemyProfile = this.objectProfile as EnemyProfile;
+		this.enemyDamageReceiver.SetMaxHp(enemyProfile.maxHP);
+		this.enemyAttack.SetDamage(enemyProfile.attackDamage);
+		this.enemyAttack.SetCoolDownTimer(enemyProfile.fireRate);
+		this.objectMove.SetMoveSpeed(enemyProfile.moveSpeed);
+	}
 
     protected virtual void LoadObjectAttack()
     {
-        if (this.objectAttack != null) return;
-        this.objectAttack = transform.GetComponentInChildren<ObjectAttack<EnemyCtrl>>();
+        if (this.enemyAttack != null) return;
+        this.enemyAttack = transform.GetComponentInChildren<EnemyAttack>();
         Debug.Log(transform.name + ": Load ObjectAttack ", gameObject);
     }
 

@@ -5,6 +5,5 @@ using UnityEngine;
 public abstract class ObjectProfile : ScriptableObject
 {
     public ObjectType ObjectType = ObjectType.NoType;
-
 }
 

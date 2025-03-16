@@ -17,7 +17,7 @@ public class EnemyManager : ObjectManager<EnemyCtrl>
             if (!enemy.gameObject.activeSelf) continue;
             enemy.ObjectTargeting.CheckTargeting();
             enemy.ObjectMove.Moving();
-            enemy.ObjectAttack.Attacking();
+            enemy.EnemyAttack.Attacking();
 
         }
     }
