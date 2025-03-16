@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CharacterProfile
   m_EditorClassIdentifier: 
   ObjectType: 1
-  chacracterSprite: {fileID: 0}
-  maxHP: 20
-  attackDamage: 2
+  characterName: Char01
+  maxHP: 10
+  attackDamage: 1
   fireRate: 0.5
   moveSpeed: 1

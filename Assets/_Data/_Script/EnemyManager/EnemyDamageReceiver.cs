@@ -26,8 +26,16 @@ public class EnemyDamageReceiver : ObjectDamageReciever
         this.enemyCtrl.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum.ToString());
         this.enemyCtrl.ObjectMove.SetCanMove(false);
         this.enemyCtrl.CircleCollider2D.enabled = false;
+        this.RewardOnDead();
         Invoke(nameof(this.Despawn), this.enemyCtrl.ObjectAnimator.ObjAnimationTimer);
     }
+    protected virtual void RewardOnDead()
+    {
+        ItemsDropManager.Instance.ItemDropSpanwer.DropItems(InventoryEnum.Currencies, ItemEnum.Gold, 5, transform.position);
+        ItemsDropManager.Instance.ItemDropSpanwer.DropItems(InventoryEnum.Currencies, ItemEnum.Point, 1, transform.position);
+
+    }
+
     protected virtual void Despawn() 
     {
         this.enemyCtrl.DespawnBase.DespawnObj();

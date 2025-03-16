@@ -8,10 +8,11 @@ public class EnemySpawner : Spawner<EnemyCtrl>
     protected void Start()
     {
 
-        InvokeRepeating(nameof(this.SpawnEnemy), 1,1);
+        InvokeRepeating(nameof(this.SpawnEnemy), 3, 2);
     }
     public virtual void SpawnEnemy()
     {
+        if (!GameManager.Instance.IsStart) return;
         EnemyCtrl enemyCtrl = this.poolPrefabs.GetPrefabByName("Enemy");
         if (enemyCtrl == null) return;
 

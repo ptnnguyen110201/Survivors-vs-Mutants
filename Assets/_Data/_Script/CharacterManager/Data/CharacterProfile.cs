@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterProfile : ObjectProfile
 {
 
-    public Sprite chacracterSprite;
+    public string characterName;
     public int maxHP;
     public int attackDamage;
     public float fireRate;

@@ -27,4 +27,8 @@ public abstract class LoadComPonent : MonoBehaviour
     }
 
 
+
+
+
+
 }

@@ -9,6 +9,7 @@ public abstract class Spawner<T> : LoadComPonent where T : MonoBehaviour
     [SerializeField] protected Transform poolHolder;
 
     [SerializeField] protected List<T> inPoolObjs;
+    public List<T> InPoolObjs => inPoolObjs;
     [SerializeField] protected PoolPrefabs<T> poolPrefabs;
     public PoolPrefabs<T> PoolPrefabs => poolPrefabs;
     protected override void LoadComponents()
