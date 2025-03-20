@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: CharacterProfile 1
   m_EditorClassIdentifier: 
   ObjectType: 1
+  characterSprite: {fileID: 21300000, guid: 59f8568be14a5ea4daeb948105721791, type: 3}
   characterName: Char02
-  maxHP: 15
-  attackDamage: 2
-  fireRate: 0.5
-  moveSpeed: 2
+  charaterUpgrade:
+  - Level: 0
+    upgradeRequirements:
+      itemProfile: {fileID: 11400000, guid: 9dfab7c1e383abe458663824f941b48b, type: 2}
+      itemCount: 0
+  - Level: 1
+    upgradeRequirements:
+      itemProfile: {fileID: 11400000, guid: 9dfab7c1e383abe458663824f941b48b, type: 2}
+      itemCount: 1
+  - Level: 2
+    upgradeRequirements:
+      itemProfile: {fileID: 11400000, guid: 9dfab7c1e383abe458663824f941b48b, type: 2}
+      itemCount: 2
+  - Level: 3
+    upgradeRequirements:
+      itemProfile: {fileID: 11400000, guid: 9dfab7c1e383abe458663824f941b48b, type: 2}
+      itemCount: 3
+  characterAttributes: []

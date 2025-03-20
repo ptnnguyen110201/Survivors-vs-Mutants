@@ -9,6 +9,7 @@ public abstract class ObjectCtrl<T> : PoolObj
     [SerializeField] protected ObjectProfile objectProfile;
     public ObjectProfile ObjectProfile => objectProfile;
 
+
     [Header("Object Base Ctrl")]
 
     [SerializeField] protected ObjectAnimator<T> objectAnimator;
@@ -45,5 +46,8 @@ public abstract class ObjectCtrl<T> : PoolObj
         this.objectMove = transform.GetComponentInChildren<ObjectMove<T>>();
         Debug.Log(transform.name + ": Load ObjectMove ", gameObject);
     }
+
+
+
 
 }

@@ -14,11 +14,19 @@ public class CharacterManager : ObjectManager<CharacterCtrl>
         foreach (CharacterCtrl character in this.T_List)
         {
             if (!character.gameObject.activeSelf) continue;
-            character.ObjectTargeting.CheckTargeting();
+            character.CharacterTargeting.CheckTargeting();
             character.ObjectMove.Moving();
-            character.CharacterAttack.Attacking();
-
+            character.CharacterAttack.Attacking(); 
         }
+    }
+    public virtual bool isExistPlace(Vector3 spawnPos) 
+    {
+        if(this.T_List.Count <= 0) return false;
+        foreach(CharacterCtrl characterCtrl in this.T_List) 
+        {
+            if (characterCtrl.transform.position == spawnPos) return true;
+        }
+        return false;
     }
 
 

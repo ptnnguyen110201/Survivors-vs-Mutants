@@ -21,10 +21,23 @@ public abstract class ObjectAnimator<T> : LoadComPonent
     }
     public int GetAnimationDuration(string animationName)
     {
-        if (this.objAnimator == null) return 0; 
-        AnimatorStateInfo stateInfo = this.objAnimator.GetCurrentAnimatorStateInfo(0);
-        return (int)stateInfo.length;
+        if (objAnimator == null || string.IsNullOrEmpty(animationName))
+            return 0;
+
+        RuntimeAnimatorController ac = objAnimator.runtimeAnimatorController;
+
+        foreach (AnimationClip clip in ac.animationClips)
+        {
+            if (clip.name == animationName)
+            {
+                return (int)clip.length;
+            }
+        }
+
+        Debug.LogWarning($"Animation '{animationName}' not found!");
+        return 0;
     }
+
 
     public virtual void SetTriggerAnimation(string animationName) 
     {

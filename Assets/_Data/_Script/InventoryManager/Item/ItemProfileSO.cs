@@ -6,8 +6,7 @@ public class ItemProfileSO : ScriptableObject
 {
     public InventoryEnum inventoryEnum;
     public ItemEnum itemEnum;
-   // public string itemName;
     public Sprite itemSprite;
-    public bool isStackable = false; // So luong cua item nay co duoc cong don hay khong 
-    public bool isUnlimitedStack = false; // Cho phep so luong cua item cong don khong co gioi han
+    public bool isStackable = false;
+    public bool isUnlimitedStack = false; 
 }

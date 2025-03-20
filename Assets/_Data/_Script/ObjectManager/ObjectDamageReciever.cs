@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public abstract class ObjectDamageReciever: LoadComPonent
+public abstract class ObjectDamageReciever : LoadComPonent
 {
-    [SerializeField] protected int maxHp = 10;
-    [SerializeField] protected int currentHp = 10;
+    [SerializeField] protected int maxHp;
+    [SerializeField] protected int currentHp;
     [SerializeField] protected bool isDead = false;
+
+    public int MaxHP => maxHp;
+    public int CurrentHp => currentHp;
 
     [SerializeField] protected ObjectAnimationEnum objectAnimationEnum;
     protected virtual void OnEnable()
@@ -17,7 +20,7 @@ public abstract class ObjectDamageReciever: LoadComPonent
     {
         this.currentHp -= Hp;
         if (this.IsDead()) this.OnDead();
-        
+
         if (this.currentHp < 0) this.currentHp = 0;
         return this.currentHp;
     }
@@ -33,6 +36,10 @@ public abstract class ObjectDamageReciever: LoadComPonent
         this.currentHp = this.maxHp;
         this.isDead = false;
     }
-    
-    public virtual void SetMaxHp(int maxHp) => this.maxHp = maxHp;
+
+    public virtual void SetMaxHp(int maxHp)
+    {
+        this.currentHp = maxHp;
+        this.maxHp = maxHp;
+    }
 }

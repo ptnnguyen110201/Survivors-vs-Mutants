@@ -17,24 +17,24 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
     [SerializeField] protected ObjectTargeting<EnemyCtrl> objectTargeting;
     public ObjectTargeting<EnemyCtrl> ObjectTargeting => objectTargeting;
 
-    //[SerializeField] protected ObjectAttack<EnemyCtrl> objectAttack;
-    //public ObjectAttack<EnemyCtrl> ObjectAttack => objectAttack;
-
     [SerializeField] protected EnemyDamageReceiver enemyDamageReceiver;
     public EnemyDamageReceiver EnemyDamageReceiver => enemyDamageReceiver;
 
 	[SerializeField] protected EnemyAttack enemyAttack;
 	public EnemyAttack EnemyAttack => enemyAttack;
 
+    [SerializeField] protected EnemyHPSlider enemyHPSlider;
+    public EnemyHPSlider EnemyHPSlider => enemyHPSlider;
 
 
-	protected override void LoadComponents()
+    protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadObjectTargeting();
         this.LoadObjectAttack();
         this.LoadEnemyDamageReceiver();
         this.LoadCircleCollider2D();
+        this.LoadEnemyHPSlider();
     }
     protected virtual void OnEnable()
     {
@@ -73,6 +73,12 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
         if (this.circleCollider2D != null) return;
         this.circleCollider2D = transform.GetComponent<CircleCollider2D>();
         Debug.Log(transform.name + ": Load CircleCollider2D ", gameObject);
+    }
+    protected virtual void LoadEnemyHPSlider()
+    {
+        if (this.enemyHPSlider != null) return;
+        this.enemyHPSlider = transform.GetComponentInChildren<EnemyHPSlider>(true);
+        Debug.Log(transform.name + ":Load EnemyHPSlider ", gameObject);
     }
 
     public virtual void SetLane(int Lane) => this.lane = Lane;

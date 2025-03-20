@@ -9,6 +9,7 @@ public class EnemyDamageReceiver : ObjectDamageReciever
     {
         base.Reborn();
         this.enemyCtrl.CircleCollider2D.enabled = true;
+        this.enemyCtrl.EnemyHPSlider.gameObject.SetActive(false);
     }
     protected override void LoadComponents()
     {
@@ -26,14 +27,25 @@ public class EnemyDamageReceiver : ObjectDamageReciever
         this.enemyCtrl.ObjectAnimator.SetTriggerAnimation(this.objectAnimationEnum.ToString());
         this.enemyCtrl.ObjectMove.SetCanMove(false);
         this.enemyCtrl.CircleCollider2D.enabled = false;
+        this.enemyCtrl.EnemyHPSlider.gameObject.SetActive(false);
         this.RewardOnDead();
-        Invoke(nameof(this.Despawn), this.enemyCtrl.ObjectAnimator.ObjAnimationTimer);
+        Invoke(nameof(this.Despawn), 1);
+    }
+
+    public override int Deduct(int Hp)
+    {
+        this.HideHpBar();
+        return base.Deduct(Hp);
     }
     protected virtual void RewardOnDead()
     {
         ItemsDropManager.Instance.ItemDropSpanwer.DropItems(InventoryEnum.Currencies, ItemEnum.Gold, 5, transform.position);
         ItemsDropManager.Instance.ItemDropSpanwer.DropItems(InventoryEnum.Currencies, ItemEnum.Point, 1, transform.position);
 
+    }
+    protected virtual void HideHpBar() 
+    {
+        this.enemyCtrl.EnemyHPSlider.gameObject.SetActive(true);
     }
 
     protected virtual void Despawn() 

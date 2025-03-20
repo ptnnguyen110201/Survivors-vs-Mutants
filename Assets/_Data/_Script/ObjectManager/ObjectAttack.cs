@@ -20,6 +20,10 @@ public abstract class ObjectAttack<T> : LoadComPonent
         this.coolDownTimer = 0;
         return true;
     }
+    protected virtual void OnEnable() 
+    {
+        this.coolDownTimer = this.coolDownTime;
+    }
     public virtual void SetCoolDownTime(float coolDownTime) => this.coolDownTime = coolDownTime;
     public virtual void SetCoolDownTimer(float coolDownTimer) => this.coolDownTimer = coolDownTimer;
     public virtual void SetCanAttack(bool canAttack) => this.canAttack = canAttack;

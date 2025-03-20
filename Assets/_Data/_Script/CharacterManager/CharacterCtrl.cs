@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CharacterCtrl : ObjectCtrl<CharacterCtrl>
 {
-    [Header("Lane")] protected int lane;
+    [Header("Lane")]
+    [SerializeField] protected int lane;
     public int Lane => lane;
     [SerializeField] protected bool isGround = false;
     public bool IsGround => isGround;
 
-    [Header("Enemy Ctrl")]
-    [SerializeField] protected ObjectTargeting<CharacterCtrl> objectTargeting;
-    public ObjectTargeting<CharacterCtrl> ObjectTargeting => objectTargeting;
+    [Header("Character Ctrl")]
+    [SerializeField] protected CharacterTargeting characterTargeting;
+    public CharacterTargeting CharacterTargeting => characterTargeting;
 
     [SerializeField] protected CharacterAttack characterAttack;
     public CharacterAttack CharacterAttack => characterAttack;
@@ -19,22 +21,24 @@ public class CharacterCtrl : ObjectCtrl<CharacterCtrl>
     [SerializeField] protected CharacterDamageReceiver characterDamageReceiver;
     public CharacterDamageReceiver CharacterDamageReceiver => characterDamageReceiver;
 
+    [SerializeField] protected CharacterLevel characterLevel;
+    public CharacterLevel CharacterLevel => characterLevel;
+
+    [SerializeField] protected CharacterAttribute characterAttribute;
+    public CharacterAttribute CharacterAttribute => characterAttribute;
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadObjectTargeting();
+        this.LoadCharacterTargeting();
         this.LoadCharacterAttack();
         this.LoadCharacterDamageReceiver();
+        this.LoadCharacterLevel();
+        this.LoadCharacterAttribute();
     }
     protected virtual void OnEnable()
     {
         CharacterManagerCtrl.Instance.CharacterManager.RegisterObject(this);
 
-        CharacterProfile characterProfile = this.objectProfile as CharacterProfile;
-        this.characterDamageReceiver.SetMaxHp(characterProfile.maxHP);
-        this.characterAttack.SetDamage(characterProfile.attackDamage);
-        this.characterAttack.SetCoolDownTimer(characterProfile.fireRate);
-        this.objectMove.SetMoveSpeed(characterProfile.moveSpeed);
     }
 
     protected virtual void LoadCharacterAttack()
@@ -44,11 +48,11 @@ public class CharacterCtrl : ObjectCtrl<CharacterCtrl>
         Debug.Log(transform.name + ": Load CharacterAttack ", gameObject);
     }
 
-    protected virtual void LoadObjectTargeting()
+    protected virtual void LoadCharacterTargeting()
     {
-        if (this.objectTargeting != null) return;
-        this.objectTargeting = transform.GetComponentInChildren<ObjectTargeting<CharacterCtrl>>();
-        Debug.Log(transform.name + ": Load ObjectTargeting ", gameObject);
+        if (this.characterTargeting != null) return;
+        this.characterTargeting = transform.GetComponentInChildren<CharacterTargeting>();
+        Debug.Log(transform.name + ": Load CharacterTargeting", gameObject);
     }
 
     protected virtual void LoadCharacterDamageReceiver()
@@ -57,7 +61,21 @@ public class CharacterCtrl : ObjectCtrl<CharacterCtrl>
         this.characterDamageReceiver = transform.GetComponentInChildren<CharacterDamageReceiver>();
         Debug.Log(transform.name + ": Load CharacterDamageReceiver ", gameObject);
     }
+    protected virtual void LoadCharacterLevel()
+    {
+        if (this.characterLevel != null) return;
+        this.characterLevel = transform.GetComponentInChildren<CharacterLevel>();
+        Debug.Log(transform.name + ": Load CharacterLevel ", gameObject);
+    }
+    protected virtual void LoadCharacterAttribute()
+    {
+        if (this.characterAttribute != null) return;
+        this.characterAttribute = transform.GetComponentInChildren<CharacterAttribute>();
+        Debug.Log(transform.name + ": Load CharacterAttribute ", gameObject);
+    }
 
 
     public virtual void SetLane(int Lane ) => this.lane = Lane;
+
+  
 }
