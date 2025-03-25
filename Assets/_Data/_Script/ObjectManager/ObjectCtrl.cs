@@ -43,7 +43,7 @@ public abstract class ObjectCtrl<T> : PoolObj
     protected virtual void LoadObjectMove() 
     {
         if (this.objectMove != null) return;
-        this.objectMove = transform.GetComponentInChildren<ObjectMove<T>>();
+        this.objectMove = transform?.GetComponentInChildren<ObjectMove<T>>();
         Debug.Log(transform.name + ": Load ObjectMove ", gameObject);
     }
 

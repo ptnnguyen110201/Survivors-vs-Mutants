@@ -5,18 +5,20 @@ using UnityEngine;
 public class CharacterTargeting : ObjectTargeting<CharacterCtrl>
 {
     [SerializeField] protected List<int> lanes;
-    public List<int> Lanes => lanes;
     [SerializeField] protected float distanceTarget;
     [SerializeField] protected List<EnemyCtrl> enemyCtrls;
-    public List<EnemyCtrl> EnemyCtrls => enemyCtrls;
 
-    protected virtual void OnEnable() 
+
+    public virtual void UpdateLane() 
     {
-        lanes.Clear();
-        lanes.Add(objParent.Lane); 
+        this.lanes.Clear();
+        if (this.lanes.Contains(this.objParent.Lane)) return;
+        this.lanes.Add(this.objParent.Lane);
     }
+
     public virtual bool isTargeting()
     {
+        if (this.objParent.IsSelecting) return false;
         this.enemyCtrls = EnemyManagerCtrl.Instance.EnemyManager.GetEnemiesInLanes(this.lanes, transform.parent.position, distanceTarget);
         if (this.enemyCtrls.Count > 0) return true;
         return false;

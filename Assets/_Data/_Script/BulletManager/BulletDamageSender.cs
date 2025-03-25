@@ -19,7 +19,7 @@ public class BulletDamageSender : ObjectDamageSender
     }
     protected virtual void Despawn() 
     {
-        this.bulletCtrl.DespawnBase.DespawnObj();
+        BulletManagerCtrl.Instance.BulletSpawner.Despawn(this.bulletCtrl);
     }
     protected virtual void LoadBulletCtrl()
     {

@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
+
 using UnityEngine;
 
 public class BulletMove : ObjectMove<BulletCtrl>
@@ -14,8 +12,8 @@ public class BulletMove : ObjectMove<BulletCtrl>
     }
     public override void Moving()
     {
-        transform.parent.position += this.moveDirection * this.moveSpeed * Time.deltaTime;
+        this.objParent.transform.position += this.moveDirection * this.moveSpeed * Time.deltaTime;
     }
 
-
+  
 }

@@ -4,16 +4,17 @@ using UnityEngine;
 
 public abstract class ObjectMove <T> : LoadComPonent
 {
-    [SerializeField] protected T ObjParent;
+    [SerializeField] protected T objParent;
     [SerializeField] protected float moveSpeed; 
     [SerializeField] protected Vector3 moveDirection;
     [SerializeField] protected bool canMove = false;
 
     [SerializeField] protected ObjectAnimationEnum objectAnimationEnum;
-    public abstract void Moving();
+
     public virtual void SetMoveSpeed(float moveSpeed ) => this.moveSpeed = moveSpeed;
     public virtual void SetMoveDirection(Vector3 moveDirection) => this.moveDirection = moveDirection;
     public virtual void SetCanMove(bool canMove ) => this.canMove = canMove;    
+    public abstract void Moving();
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -21,8 +22,8 @@ public abstract class ObjectMove <T> : LoadComPonent
     }
     protected virtual void LoadObjParent() 
     {
-        if (this.ObjParent != null) return;
-        this.ObjParent = transform.GetComponentInParent<T>(true);
+        if (this.objParent != null) return;
+        this.objParent = transform.GetComponentInParent<T>(true);
         Debug.Log(transform.name + ": Load ObjParent", gameObject);
     }
 }

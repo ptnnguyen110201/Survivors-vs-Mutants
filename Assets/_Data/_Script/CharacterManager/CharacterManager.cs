@@ -14,20 +14,21 @@ public class CharacterManager : ObjectManager<CharacterCtrl>
         foreach (CharacterCtrl character in this.T_List)
         {
             if (!character.gameObject.activeSelf) continue;
+            character.CharacterTargeting.UpdateLane();
             character.CharacterTargeting.CheckTargeting();
             character.ObjectMove.Moving();
             character.CharacterAttack.Attacking(); 
         }
     }
-    public virtual bool isExistPlace(Vector3 spawnPos) 
-    {
-        if(this.T_List.Count <= 0) return false;
-        foreach(CharacterCtrl characterCtrl in this.T_List) 
-        {
-            if (characterCtrl.transform.position == spawnPos) return true;
-        }
-        return false;
-    }
 
+    public virtual CharacterCtrl isExistCharacter(Vector3 spawnPos)
+    {
+        if (this.T_List.Count <= 0) return null;
+        foreach (CharacterCtrl characterCtrl in this.T_List)
+        {
+            if (characterCtrl.transform.position == spawnPos) return characterCtrl;
+        }
+        return null;
+    }
 
 }

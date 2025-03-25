@@ -15,6 +15,14 @@ public class BulletManager : ObjectManager<BulletCtrl>
         {
             if (!bulletCtrl.gameObject.activeSelf) continue;
             bulletCtrl.ObjectMove.Moving();
+
+            BulletDespawn bulletDespawn = bulletCtrl.DespawnBase as BulletDespawn;
+            if (bulletDespawn == null) continue;
+            bulletDespawn.DespawnByDist();
         }
     }
+
+
+
+
 }

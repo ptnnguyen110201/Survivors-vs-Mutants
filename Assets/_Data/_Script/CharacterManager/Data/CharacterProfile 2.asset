@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7e821b0d73cfb42b4e9903588a9a7e, type: 3}
+  m_Name: CharacterProfile 2
+  m_EditorClassIdentifier: 
+  ObjectType: 1
+  characterName: Char03
+  characterSprite: {fileID: 21300000, guid: 0c01568d08649474081b9d3b2f5d68f7, type: 3}
+  charaterUpgrade:
+  - Level: 0
+    upgradeRequirements:
+      itemProfile: {fileID: 11400000, guid: 9dfab7c1e383abe458663824f941b48b, type: 2}
+      itemCount: 0
+  - Level: 1
+    upgradeRequirements:
+      itemProfile: {fileID: 11400000, guid: 9dfab7c1e383abe458663824f941b48b, type: 2}
+      itemCount: 1
+  - Level: 2
+    upgradeRequirements:
+      itemProfile: {fileID: 11400000, guid: 9dfab7c1e383abe458663824f941b48b, type: 2}
+      itemCount: 2
+  - Level: 3
+    upgradeRequirements:
+      itemProfile: {fileID: 11400000, guid: 9dfab7c1e383abe458663824f941b48b, type: 2}
+      itemCount: 3
+  characterAttributes:
+  - Level: 0
+    attributes:
+      maxHP: 40
+      attackDamage: 5
+      fireRate: 0.5
+      moveSpeed: 1
+  - Level: 1
+    attributes:
+      maxHP: 50
+      attackDamage: 6
+      fireRate: 0.5
+      moveSpeed: 1
+  - Level: 2
+    attributes:
+      maxHP: 60
+      attackDamage: 7
+      fireRate: 0.5
+      moveSpeed: 1
+  - Level: 3
+    attributes:
+      maxHP: 70
+      attackDamage: 8
+      fireRate: 0.5
+      moveSpeed: 1
+  characterMergeProfiles:
+  - requirementsProfile: {fileID: 0}
+    mergedProfile: {fileID: 11400000, guid: 61b95af4832cb0e40a59ed69da291dcc, type: 2}

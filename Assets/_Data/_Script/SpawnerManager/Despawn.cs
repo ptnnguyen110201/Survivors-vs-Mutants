@@ -6,29 +6,7 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
 {
     [SerializeField] protected T parent;
     [SerializeField] protected Spawner<T> spawner;
-    [SerializeField] protected Coroutine despawnCoroutine;
-
-    protected virtual void OnDisable()
-    {
-        if (this.despawnCoroutine != null)
-        {
-            this.StopCoroutine(this.despawnCoroutine);
-            this.despawnCoroutine = null;
-            return;
-        }
-    }
-    protected virtual void OnEnable()
-    {
-        if(this.despawnCoroutine != null) 
-        {
-            this.StopCoroutine(this.despawnCoroutine);
-            this.despawnCoroutine = this.StartCoroutine(this.DespawnCoroutine());
-            return;
-
-        }
-        this.despawnCoroutine = this.StartCoroutine(this.DespawnCoroutine());
-
-    }
+    
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -54,7 +32,6 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
         this.spawner.Despawn(this.parent);
     }
 
-    protected abstract IEnumerator DespawnCoroutine();
 
     
 

@@ -15,8 +15,10 @@ public abstract class LoadComPonent : MonoBehaviour
     protected virtual void Awake()
     {
         this.LoadComponents();
-        Screen.fullScreen = true;
-        Application.targetFrameRate = 120;
+
+  
+        Screen.SetResolution(1920, 1080, true);
+        Application.targetFrameRate = 1000;
     }
 
 
@@ -29,6 +31,6 @@ public abstract class LoadComPonent : MonoBehaviour
 
 
 
-
+   
 
 }

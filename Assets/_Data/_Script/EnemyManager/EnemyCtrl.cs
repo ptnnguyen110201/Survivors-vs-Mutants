@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,11 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
     [Header("Lane")]
     [SerializeField] protected int lane;
     public int Lane => lane;
-    [SerializeField] protected bool isGround = false;
-    public bool IsGround => isGround;
 
-	[Header("Enemy Ctrl")]
+    [SerializeField] protected bool isEnable = true;
+    public bool IsEnable => isEnable;
+    public virtual void SetEnableEnemy(bool isEnable) => this.isEnable = isEnable;
+    [Header("Enemy Ctrl")]
     [SerializeField] protected CircleCollider2D circleCollider2D;
     public CircleCollider2D CircleCollider2D => circleCollider2D;
 
@@ -34,17 +36,17 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
         this.LoadObjectAttack();
         this.LoadEnemyDamageReceiver();
         this.LoadCircleCollider2D();
-        this.LoadEnemyHPSlider();
+       
+       this.LoadEnemyHPSlider();
     }
     protected virtual void OnEnable()
     {
-        EnemyManagerCtrl.Instance.EnemyManager.RegisterObject(this);
 
 		EnemyProfile enemyProfile = this.objectProfile as EnemyProfile;
-		this.enemyDamageReceiver.SetMaxHp(enemyProfile.maxHP);
-		this.enemyAttack.SetDamage(enemyProfile.attackDamage);
-		this.enemyAttack.SetCoolDownTimer(enemyProfile.fireRate);
-		this.objectMove.SetMoveSpeed(enemyProfile.moveSpeed);
+		this.enemyDamageReceiver.SetMaxHp(enemyProfile.enemyAttributes.attributes.maxHP);
+		this.enemyAttack.SetDamage(enemyProfile.enemyAttributes.attributes.attackDamage);
+		this.enemyAttack.SetCoolDownTimer(enemyProfile.enemyAttributes.attributes.fireRate);
+		this.objectMove.SetMoveSpeed(enemyProfile.enemyAttributes.attributes.moveSpeed);
 	}
 
     protected virtual void LoadObjectAttack()
@@ -80,6 +82,6 @@ public class EnemyCtrl : ObjectCtrl<EnemyCtrl>
         this.enemyHPSlider = transform.GetComponentInChildren<EnemyHPSlider>(true);
         Debug.Log(transform.name + ":Load EnemyHPSlider ", gameObject);
     }
-
+ 
     public virtual void SetLane(int Lane) => this.lane = Lane;
 }

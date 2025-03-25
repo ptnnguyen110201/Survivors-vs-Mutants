@@ -1,4 +1,4 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,36 +34,38 @@ public class EnemyMove : ObjectMove<EnemyCtrl>
         this.moveSpeed = 1f;
     }
 
-    public override void Moving()
+      public override void Moving()
     {
         if (!this.canMove)
-        {
-            this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum.ToString(), this.canMove);
-            return;
-        }
+          {
+              this.objParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum.ToString(), this.canMove);
+              return;
+          }
 
-        this.MoveToNextPoint();
-        this.ObjParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum.ToString(), this.canMove);
-    }
+          this.MoveToNextPoint();
+          this.objParent.ObjectAnimator.SetBoolAnimation(this.objectAnimationEnum.ToString(), this.canMove);
+      }
 
-    protected virtual void MoveToNextPoint()
-    {
-        List<Vector3> pathPoints = this.pathMap.GetPoints();
-        if (pathPoints.Count == 0) return;
+      protected virtual void MoveToNextPoint()
+      {
+          List<Vector3> pathPoints = this.pathMap.GetPoints();
+          if (pathPoints.Count == 0) return;
 
-        if (this.pointIndex >= pathPoints.Count)
-        {
-            this.canMove = false;
-            return;
-        }
+          if (this.pointIndex >= pathPoints.Count)
+          {
+              this.canMove = false;
+              return;
+          }
 
-         this.nextPoint = pathPoints[this.pointIndex];
-        transform.parent.position = Vector3.MoveTowards(transform.parent.position, this.nextPoint, this.moveSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.parent.position, this.nextPoint) > this.stoppingDistance) return;
+           this.nextPoint = pathPoints[this.pointIndex];
+          transform.parent.position = Vector3.MoveTowards(transform.parent.position, this.nextPoint, this.moveSpeed * Time.deltaTime);
+          if (Vector3.Distance(transform.parent.position, this.nextPoint) > this.stoppingDistance) return;
 
-        this.pointIndex++;
+          this.pointIndex++;
 
-    }
+      }
+ 
 
-    //protected virtual void CheckingMove() => this.canMove = !this.ObjParent.EnemyDamageReceiver.IsDead();
+
+
 }

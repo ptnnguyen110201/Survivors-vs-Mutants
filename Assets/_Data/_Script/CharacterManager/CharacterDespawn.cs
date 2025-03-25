@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CharacterDespawn : Despawn<CharacterCtrl>
 {
-    protected override IEnumerator DespawnCoroutine()
+    public override void DespawnObj()
     {
-        yield break;
+        CharacterManagerCtrl.Instance.CharacterManager.UnRegisterObject(this.parent);
+        base.DespawnObj();
     }
 }

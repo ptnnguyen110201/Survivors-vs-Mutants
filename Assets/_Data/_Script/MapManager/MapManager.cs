@@ -13,10 +13,11 @@ public class MapManager : Singleton<MapManager>
     {
         base.LoadComponents();
         this.LoadMaps();
-        this.currentMap = this.listMaps[0];
+      
     }
     protected virtual void LoadMaps() 
     {
+
         if (this.listMaps.Count > 0) return;
         foreach (Transform obj in this.transform.Find("Prefabs"))
         {

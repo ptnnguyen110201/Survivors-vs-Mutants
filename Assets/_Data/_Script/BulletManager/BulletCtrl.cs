@@ -9,10 +9,6 @@ public class BulletCtrl : ObjectCtrl<BulletCtrl>
     public BulletDamageSender BulletDamageSender => bulletDamageSender;
 
 
-    protected virtual void OnEnable()
-    {
-        BulletManagerCtrl.Instance.BulletManager.RegisterObject(this);
-    }
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -21,7 +17,7 @@ public class BulletCtrl : ObjectCtrl<BulletCtrl>
     protected virtual void LoadBulletDamageSender()
     {
         if (this.bulletDamageSender != null) return;
-        this.bulletDamageSender = transform.GetComponentInChildren<BulletDamageSender>();
+        this.bulletDamageSender = transform.GetComponentInChildren<BulletDamageSender>(true);
         Debug.Log(transform.name + ": Load BulletDamageSender", gameObject);
     }
 

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class EnemyDespawn : Despawn<EnemyCtrl>
 {
-    protected override IEnumerator DespawnCoroutine()
-    {
-        yield break;
-    }
 
   
 }

@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 4
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 512
+      m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 1
@@ -1848,7 +1848,6 @@ SpriteAtlas:
     - 2b38e548b6cfae043a2b0b3842075086: 21300000
     - 17fae548a3b86ef41b5913b2f1e1dca2: 21300000
     - 1328d848f8e2592458ad5f9fd594c1a5: 21300000
-    - 69718948345bcf34cb582e09e122bb64: 21300000
     - ccf4d948afa5c3f47907ade4ab4e7414: 21300000
     - e0ad9a487b03ed344bc5edee23922552: 21300000
     - e5233b48b5b6a6b43a9e9aafc84ea2b1: 21300000
@@ -5378,7 +5377,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2b38e548b6cfae043a2b0b3842075086, type: 3}
   - {fileID: 21300000, guid: 17fae548a3b86ef41b5913b2f1e1dca2, type: 3}
   - {fileID: 21300000, guid: 1328d848f8e2592458ad5f9fd594c1a5, type: 3}
-  - {fileID: 21300000, guid: 69718948345bcf34cb582e09e122bb64, type: 3}
   - {fileID: 21300000, guid: ccf4d948afa5c3f47907ade4ab4e7414, type: 3}
   - {fileID: 21300000, guid: e0ad9a487b03ed344bc5edee23922552, type: 3}
   - {fileID: 21300000, guid: e5233b48b5b6a6b43a9e9aafc84ea2b1, type: 3}
@@ -8907,7 +8905,6 @@ SpriteAtlas:
   - skeleton-Death_1
   - skeleton-Jump_3
   - skeleton-Die_7
-  - skeleton-Idle_0
   - skeleton-Death_23
   - skeleton-Die_21
   - skeleton-Idle_4

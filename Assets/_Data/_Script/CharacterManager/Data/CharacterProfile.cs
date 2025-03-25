@@ -9,10 +9,20 @@ public class CharacterProfile : ObjectProfile
     public Sprite characterSprite;
     public List<CharacterUpgradeProfile> charaterUpgrade;
     public List<CharacterAttributes> characterAttributes;
+    public List<CharacterMergeProfile> characterMergeProfiles;
 
 
-
-
+    public CharacterMergeProfile GetCharacterMergeProfile(CharacterProfile characterProfile) 
+    {
+        if(characterProfile == null) return null;
+        foreach(CharacterMergeProfile characterMergeProfile in this.characterMergeProfiles) 
+        {
+            if (characterMergeProfile.mergedProfile == null) continue;
+            if (characterMergeProfile.requirementsProfile != characterProfile) continue;
+            return characterMergeProfile;
+        }
+        return null;
+    }
     public Attributes GetCharacterAttributes(int Level)
     {
         foreach (CharacterAttributes attributes in this.characterAttributes)

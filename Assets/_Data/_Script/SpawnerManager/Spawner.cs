@@ -75,10 +75,13 @@ public abstract class Spawner<T> : LoadComPonent where T : MonoBehaviour
     }
     protected virtual void AddObjectToPool(T obj)
     {
+        if (this.inPoolObjs.Contains(obj)) return;
+
         this.inPoolObjs.Add(obj);
     }
     protected virtual void RemoveObjFromPool(T obj)
     {
+        if (!this.inPoolObjs.Contains(obj)) return;
         this.inPoolObjs.Remove(obj);
     }
 

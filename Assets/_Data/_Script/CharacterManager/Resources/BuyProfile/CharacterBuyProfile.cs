@@ -8,7 +8,7 @@ public class CharacterBuyProfile : ObjectProfile
     public CharacterProfile characterProfile; 
     public Sprite chacracterSprite;
     public int chacracterCoints;
-
+    public int currentMap;
 
 }
 

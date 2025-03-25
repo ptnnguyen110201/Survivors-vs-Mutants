@@ -39,8 +39,8 @@ public class EnemyDamageReceiver : ObjectDamageReciever
     }
     protected virtual void RewardOnDead()
     {
-        ItemsDropManager.Instance.ItemDropSpanwer.DropItems(InventoryEnum.Currencies, ItemEnum.Gold, 5, transform.position);
-        ItemsDropManager.Instance.ItemDropSpanwer.DropItems(InventoryEnum.Currencies, ItemEnum.Point, 1, transform.position);
+        ItemsDropManagerCtrl.Instance.ItemDropSpanwer.DropItems(InventoryEnum.Currencies, ItemEnum.Gold, 5, transform.position);
+        ItemsDropManagerCtrl.Instance.ItemDropSpanwer.DropItems(InventoryEnum.Currencies, ItemEnum.Point, 1, transform.position);
 
     }
     protected virtual void HideHpBar() 

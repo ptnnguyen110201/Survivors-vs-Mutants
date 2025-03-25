@@ -7,16 +7,21 @@ public class ItemDropDespawn : DespawnByTime<ItemDropCtrl>
         base.ResetValue();
         this.isDespawnByTime = true;
     }
-    public override void DespawnObj() 
+
+    public override void DespawnObj()
     {
-        ItemDropCtrl itemdropCtrl = (ItemDropCtrl)this.parent;
+        base.DespawnObj();
+        this.DropByDespawn();
+    }
+    protected virtual void DropByDespawn() 
+    {
         ItemInventory item = new ItemInventory()
         {
-            itemProfileSO = InventoryManager.Instance.GetItemProfileSO(itemdropCtrl.ItemEnum),
-            itemCount = itemdropCtrl.ItemCount  
+            itemProfileSO = InventoryManager.Instance.GetItemProfileSO(this.parent.ItemEnum),
+            itemCount = this.parent.ItemCount  
         };
-        InventoryManager.Instance.GetInventoryCodeName(itemdropCtrl.InventoryEnum).AddItem(item);
-        base.DespawnObj();
+        InventoryManager.Instance.GetInventoryCodeName(this.parent.InventoryEnum).AddItem(item);
+
     }
 
   

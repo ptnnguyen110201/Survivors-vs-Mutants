@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SelectSurvivorSlot : ButtonAbstract, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class SelectSurvivorSlot : ButtonAbstract, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] protected CharacterBuyProfile characterBuyProfile;
     public CharacterBuyProfile CharacterBuyProfile => characterBuyProfile;
@@ -15,14 +15,14 @@ public class SelectSurvivorSlot : ButtonAbstract, IPointerDownHandler, IDragHand
     {
         this.characterBuyProfile = characterBuyProfile;
         this.characterImage.sprite = characterBuyProfile.chacracterSprite;
- 
+
         this.characterCoints.text = characterBuyProfile.chacracterCoints.ToString();
-       
 
 
-        if (!isCanBuy) 
+
+        if (!isCanBuy)
         {
-            this.characterCoints.color = Color.red; 
+            this.characterCoints.color = Color.red;
             this.button.interactable = isCanBuy;
             return;
         }
@@ -53,38 +53,41 @@ public class SelectSurvivorSlot : ButtonAbstract, IPointerDownHandler, IDragHand
 
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
         if (!this.button.interactable) return;
         this.savePosition = this.characterImage.transform.position;
         this.saveLocolcalScale = this.characterImage.transform.localScale;
         this.characterImage.raycastTarget = false;
         this.characterImage.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-        CharacterPutManager.Instance.SetSelectSurvivorSlot(this.characterBuyProfile);
+        SeedSurvivorBuy.Instance.SetSelectSurvivorSlot(this.characterBuyProfile);
+        CharacterPutManager.Instance.SetSelectSurvivorSlot(this.characterBuyProfile.characterProfile);
+      
     }
-
     public void OnDrag(PointerEventData eventData)
     {
         if (!this.button.interactable) return;
         Transform obj_Image = this.characterImage.transform;
         obj_Image.position = InputManager.Instance.mouseWolrdPos;
-
+        CharacterFushionManager.Instance.ShowCanFushion(this.characterBuyProfile.characterProfile);
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData)
     {
         if (!this.button.interactable) return;
         this.characterImage.raycastTarget = true;
         Transform obj_Image = this.characterImage.transform;
         obj_Image.position = this.savePosition;
-        obj_Image.localScale = this.saveLocolcalScale; 
-        CharacterPutManager.Instance.SpawnCharacter();
+        obj_Image.localScale = this.saveLocolcalScale;
+        SeedSurvivorBuy.Instance.BuyCharacter();
         CharacterPutManager.Instance.SetSelectSurvivorSlot();
-
     }
+
 
     protected override void OnClick()
     {
         return;
     }
+
+
 }

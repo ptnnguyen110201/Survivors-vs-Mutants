@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CharacterMove : ObjectMove<CharacterCtrl>
 {
+
     protected override void ResetValue()
     {
         base.ResetValue();
@@ -13,8 +14,7 @@ public class CharacterMove : ObjectMove<CharacterCtrl>
     }
     public override void Moving()
     {
-        return;
+        
     }
-
 
 }

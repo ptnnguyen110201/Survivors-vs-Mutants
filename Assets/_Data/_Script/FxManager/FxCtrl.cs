@@ -5,9 +5,5 @@ using UnityEngine;
 public class FxCtrl : ObjectCtrl<FxCtrl>
 {
 
-    protected virtual void OnEnable()
-    {
-        FxManagerCtrl.Instance.FxManager.RegisterObject(this);
-    }
 
 }

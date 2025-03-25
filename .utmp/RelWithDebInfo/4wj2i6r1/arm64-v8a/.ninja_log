@@ -1,0 +1,12 @@
+# ninja log v5
+44	514	7642048704721345	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	f10c08218ab93dbe
+516	700	7642048706661061	C:/Users/ptnng/Survivors vs Mutants/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4wj2i6r1/obj/arm64-v8a/libswappywrapper.so	fa0c07d39e08d9cc
+25	1916	7642048718558508	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	642e61c77c08313d
+19	1928	7642048718786815	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	cc151a8abe239434
+1	1956	7642048719146886	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	fa2ac537fdb6b338
+36	2002	7642048719622826	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	5a0af05ba34fa255
+10	2026	7642048719893477	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3662f6b0f19c0a35
+30	2117	7642048720800261	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	5344af1a1d976733
+14	2368	7642048723323489	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	caf2fb08e4771a3b
+5	2479	7642048724445609	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	e6795b635e71fa14
+2480	2582	7642048725523331	C:/Users/ptnng/Survivors vs Mutants/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4wj2i6r1/obj/arm64-v8a/libgame.so	facf1968feccc07a

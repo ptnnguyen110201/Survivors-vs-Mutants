@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CharacterProfile 1
   m_EditorClassIdentifier: 
   ObjectType: 1
-  characterSprite: {fileID: 21300000, guid: 59f8568be14a5ea4daeb948105721791, type: 3}
   characterName: Char02
+  characterSprite: {fileID: 21300000, guid: 59f8568be14a5ea4daeb948105721791, type: 3}
   charaterUpgrade:
   - Level: 0
     upgradeRequirements:
@@ -32,4 +32,31 @@ MonoBehaviour:
     upgradeRequirements:
       itemProfile: {fileID: 11400000, guid: 9dfab7c1e383abe458663824f941b48b, type: 2}
       itemCount: 3
-  characterAttributes: []
+  characterAttributes:
+  - Level: 0
+    attributes:
+      maxHP: 10
+      attackDamage: 2
+      fireRate: 0.75
+      moveSpeed: 1
+  - Level: 1
+    attributes:
+      maxHP: 15
+      attackDamage: 3
+      fireRate: 0.75
+      moveSpeed: 1
+  - Level: 2
+    attributes:
+      maxHP: 20
+      attackDamage: 3
+      fireRate: 0.75
+      moveSpeed: 1
+  - Level: 3
+    attributes:
+      maxHP: 30
+      attackDamage: 4
+      fireRate: 0.75
+      moveSpeed: 1
+  characterMergeProfiles:
+  - requirementsProfile: {fileID: 11400000, guid: a0a97c144902dde47bef33b96f3004e8, type: 2}
+    mergedProfile: {fileID: 11400000, guid: 2f8cfafcbcbf9954389c32d010471c37, type: 2}

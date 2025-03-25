@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f283c563e280b784197af00b37de8bb9, type: 3}
   m_Name: EnemyProfile
   m_EditorClassIdentifier: 
-  ObjectType: 1
+  ObjectType: 2
+  enemyName: Enemy
   enemySprite: {fileID: 21300000, guid: 2e44fb43350e1124a8aaeaf880f73f72, type: 3}
-  maxHP: 10
-  attackDamage: 1
-  fireRate: 1
-  moveSpeed: 1
+  enemyAttributes:
+    attributes:
+      maxHP: 5
+      attackDamage: 1
+      fireRate: 1
+      moveSpeed: 1

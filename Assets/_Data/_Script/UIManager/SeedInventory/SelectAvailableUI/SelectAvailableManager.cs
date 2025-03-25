@@ -26,8 +26,14 @@ public class SelectAvailableManager : LoadComPonent
     }
     protected virtual void UpdatingAvailableSlot()
     {
-        this.ClearSlot();
-        if (GameManager.Instance.IsStart) return;
+
+        if (GameManager.Instance.IsStart) 
+        {
+            this.ClearSlot();
+            return; 
+        }
+   
+ 
         List<CharacterBuyProfile> characterBuyProfiles = SeedInventory.Instance.SelectedProfile;
         this.selectAvailableSlot.RemoveAll(slot =>
         {
@@ -69,10 +75,10 @@ public class SelectAvailableManager : LoadComPonent
 
     protected virtual void ClearSlot()
     {
-        for (int i = selectAvailableSlot.Count - 1; i >= 0; i--)  
+        for (int i = this.selectAvailableSlot.Count - 1; i >= 0; i--)  
         {
             Destroy(selectAvailableSlot[i].gameObject);
-            selectAvailableSlot.RemoveAt(i);
+            this.selectAvailableSlot.RemoveAt(i);
         }
     }
 }
